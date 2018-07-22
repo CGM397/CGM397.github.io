@@ -3,10 +3,10 @@ layout: main
 ---
 
 {% for post in paginator.posts %}
-  <div class="chapter">
+<div class="chapter" xmlns:prepend="http://www.w3.org/1999/xhtml" xmlns:append="http://www.w3.org/1999/xhtml">
     <a href="{{post.url | prepend: site.baseurl}}">
       {% if post.img %}
-      <img src={{ "/assets/img/" | prepend: site.baseurl | append: post.img }} alt="{{post.title}}">
+      <img src={{"/assets/img/" | prepend: site.baseurl | append: post.img }} alt="{{post.title}}">
       {% endif %}
     </a>
     <div class="chapter_inner">
