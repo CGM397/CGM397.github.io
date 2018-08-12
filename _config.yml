@@ -14,12 +14,12 @@ banner-title: # add banner title
 banner-desc: # add banner description
 
 # Author settings
-author-pic: # your photo
-author-name: # your name
-about-author: # about author
-email: your-email@domain.com # your email
-phone: xxxxxxxxxxx # your phone number
-website: https://980231201@qq.com # you website
+author-pic: author-pic.jpg # your photo
+author-name: Bright Chan # your name
+about-author: about author # about author
+email: jstzcgm@gmail.com # your email
+phone: 18805199056 # your phone number
+website: TODO # you website
 
 # Social link
 google_url:    # add url link
