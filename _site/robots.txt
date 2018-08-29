@@ -1,1 +1,1 @@
-Sitemap: http://localhost:4000/CGM397.github.io/sitemap.xml
+Sitemap: /CGM397.github.io/sitemap.xml
