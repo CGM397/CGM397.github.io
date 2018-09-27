@@ -9,3 +9,5 @@ tag: [Travel, Indonesia, Mountains]
 #### 1.大括号加百分号加include某某HTML是在当前HTML中引入某某html文件
 
 #### 2.config.yml中包含基本配置信息，HTML中site.xxx就是引用config中的信息
+
+#### 3._pages中的about.html、contact.html和tags.html待修改
