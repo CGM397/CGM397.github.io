@@ -20,5 +20,5 @@ tag: [Travel, Indonesia, Mountains]
 ### 4. Java读取MIDI文件
 #### &emsp;&emsp;4.1 用FileInputStream，以字节位单位来读取。将读取到的字节存到数组中，之后处理数组即可。
 
-###5. MP3转MIDI文件
+### 5. MP3转MIDI文件
 #### &emsp;&emsp;5.1 可以用现有的软件来处理，比如cakewalk，widi等等。
