@@ -7,7 +7,7 @@ description: You’ll find this post in your `_posts` directory. Go ahead and ed
 tag: [Travel, Indonesia, Mountains]
 ---
 ### 1. MIDI(Musical Instrument Digital Interface)概述
-#### &emsp;&emsp;1.1. MIDI是编曲界最广泛的音乐标准格式，可称为“计算机能理解的乐谱”。(来自百度百科----[MIDI](https://baike.baidu.com/item/MIDI/217824?fr=aladdin))
+#### &emsp;&emsp;1.1. MIDI是编曲界最广泛的音乐标准格式，可称为“计算机能理解的乐谱”。(来自百度百科——[MIDI](https://baike.baidu.com/item/MIDI/217824?fr=aladdin))
 
 ### 2. MIDI文件格式
 #### &emsp;&emsp;2.1. 一个MIDI文件格式是由一个头块和若干个轨道块组成的。
