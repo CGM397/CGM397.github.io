@@ -11,7 +11,7 @@ url: "" # the base hostname & protocol for your site, e.g. http://example.com
 # Banner settings
 video: mountains.mp4 # add banner video. Add your video file to the folder video
 banner-title: 静思轩 # add banner title
-banner-desc: “落花人独立，微雨燕双飞。”——晏几道 # add banner description
+banner-desc: “小园几许，收尽春光。有桃花红，李花白，菜花黄”——秦观《行香子·树绕村庄》 # add banner description
 
 # Author settings
 author-pic: author-pic.jpg # your photo
