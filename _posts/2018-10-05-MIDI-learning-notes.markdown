@@ -36,97 +36,46 @@ tag: [Travel, Indonesia, Mountains]
 ### 7. 音符
 #### &emsp;&emsp;7.1. 通过音符的16进制数求音符的符号(音名加音阶)：假设音符是Ni，N是音名，i是音阶。公式：N = B mod 12；i = B div 12 - 1，其中B表示音符字节的10进制数。
 #### &emsp;&emsp;7.2. N的10进制数值参照下表：
-<table>
+<table cellspacing="35">
     <tr>
-        <td>
-            <pre>音名</pre>
-        </td>
-        <td>
-            <pre>C</pre>
-        </td>
-        <td>
-            <pre>#C</pre>
-        </td>
-        <td>
-            <pre>D</pre>
-        </td>
-        <td>
-            <pre>#D</pre>
-        </td>
-        <td>
-            <pre>E</pre>
-        </td>
-        <td>
-            <pre>F</pre>
-        </td>
-        <td>
-            <pre>#F</pre>
-        </td>
-        <td>
-            <pre>G</pre>
-        </td>
-        <td>
-            <pre>#G</pre>
-        </td>
-        <td>
-            <pre>A</pre>
-        </td>
-        <td>
-            <pre>#A</pre>
-        </td>
-        <td>
-            <pre>B</pre>
-        </td>
+        <td>音名</td>
+        <td>C</td>
+        <td>#C</td>
+        <td>D</td>
+        <td>#D</td>
+        <td>E</td>
+        <td>F</td>
+        <td>#F</td>
+        <td>G</td>
+        <td>#G</td>
+        <td>A</td>
+        <td>#A</td>
+        <td>B</td>
     </tr>
     <tr>
-        <td>
-            <pre>10进制数值</pre>
-        </td>
-        <td>
-            <pre>0</pre>
-        </td>
-        <td>
-            <pre>1</pre>
-        </td>
-        <td>
-            <pre>2</pre>
-        </td>
-        <td>
-            <pre>3</pre>
-        </td>
-        <td>
-            <pre>4</pre>
-        </td>
-        <td>
-            <pre>5</pre>
-        </td>
-        <td>
-            <pre>6</pre>
-        </td>
-        <td>
-            <pre>7</pre>
-        </td>
-        <td>
-            <pre>8</pre>
-        </td>
-        <td>
-            <pre>9</pre>
-        </td>
-        <td>
-            <pre>10</pre>
-        </td>
-        <td>
-            <pre>11</pre>
-        </td>
+        <td>10进制数值</td>
+        <td>0</td>
+        <td>1</td>
+        <td>2</td>
+        <td>3</td>
+        <td>4</td>
+        <td>5</td>
+        <td>6</td>
+        <td>7</td>
+        <td>8</td>
+        <td>9</td>
+        <td>10</td>
+        <td>11</td>
     </tr>
 </table>
-
-|音名|C|#C|D|#D|E|F|#F|G|#G|A|#A|B|
-|----:|----:|----:|----:|----:|----:|----:|----:|----:|----:|----:|----:|----:|
-|10进制数值|0|1|2|3|4|5|6|7|8|9|10|11|
 
 ### 8. Java读取MIDI文件
 #### &emsp;&emsp;8.1. 用FileInputStream，以字节位单位来读取。将读取到的字节存到数组中，之后处理数组即可。
 
 ### 9. MP3转MIDI文件
 #### &emsp;&emsp;9.1. 可以用现有的软件来处理，比如cakewalk，widi等等。
+#### &emsp;&emsp;9.2. 也可以到某些音乐网站上下载MIDI音乐，比如[MidiShow](http://www.midishow.com/)。
+
+### 10. 主要参考文献
+#### &emsp;&emsp;10.1. [MIDI歌曲解析](https://blog.csdn.net/shao941122/article/details/46124865)
+#### &emsp;&emsp;10.2. [标准MIDI格式](https://blog.csdn.net/absurd/article/details/1321427)
