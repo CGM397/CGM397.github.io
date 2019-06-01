@@ -12,8 +12,8 @@ tag: [Travel, Blogging, Mountains]
 
 ### 2. 公共对象请求代理体系结构(CORBA):
 #### &emsp;&emsp;简介：是由OMG组织制订的一种标准的面向对象应用程序体系规范。
-#### &emsp;&emsp;使用：详见github项目。
-#### &emsp;&emsp;注意事项：TODO。
+#### &emsp;&emsp;使用：首先需要创建一个idl文件，其中有需要暴露的接口，之后再使用命令行创建idl文件对应的module包，创建方法：在命令行中输入 idlj -fall idl文件路径，具体连接方法详见github项目。
+#### &emsp;&emsp;注意事项：切记，在运行服务器端之前，需要先启动ordb.exe，启动方法：在命令行中输入 start orbd -port 8080 -ORBInitialPort 1049 -ORBInitialHost localhost，其中8080是绑定的端口，1049是初始化的端口，初始化接口只要不冲突就可以随便指定一个空闲端口。
 
 ### 3. 远程方法调用(RMI):
 #### &emsp;&emsp;简介：Java提供的一种远程方法调用机制。
