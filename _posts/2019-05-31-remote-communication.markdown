@@ -18,7 +18,7 @@ tag: [Travel, Blogging, Mountains]
 ### 3. 远程方法调用(RMI):
 #### &emsp;&emsp;简介：Java提供的一种远程方法调用机制。
 #### &emsp;&emsp;使用：详见github项目。
-#### &emsp;&emsp;注意事项：TODO。
+#### &emsp;&emsp;注意事项：需要暴露的接口需要继承Remote类，其中的方法需要抛出RemoteException；实现类需要继承UnicastRemoteObject类，构造函数需要是public并抛出RemoteException，客户端的接口需要和服务器端的接口一致。
 
 ### 4. Web Service:
 #### &emsp;&emsp;简介：将接口转成WSDL文件，由客户端调用。
