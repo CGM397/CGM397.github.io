@@ -28,7 +28,7 @@ tag: [Travel, Blogging, Mountains]
 ### 5. 消息队列(MQ):
 #### &emsp;&emsp;简介：“消息队列”是在消息的传输过程中保存消息的容器。消息队列的主要特点是异步处理，主要目的是减少请求响应时间和解耦。可以用来进行远程方法调用。主流的MQ有ActiveMQ、RabbitMQ、RocketMQ和Kafka等，MQ有两种通信模式：点对点模式和发布订阅模式。
 #### &emsp;&emsp;使用：我使用的是RabbitMQ，实现的是利用RabbitMQ实现RPC，使用的通信模式是点对点模式。使用之前需要安装Erlang和RabbitMQ Server，Windows安装教程可参考这篇[博客](https://www.cnblogs.com/ericli-ericli/p/5902270.html)，实例代码详见github项目。
-#### &emsp;&emsp;注意事项：TODO。
+#### &emsp;&emsp;注意事项：RabbitMQ中的默认用户"guest"只能通过本地访问，如果需要远程访问需要重新创建一个用户并赋予其权限，在/rabbit-server/sbin/下输入以下命令：rabbitmqctl add_user name password；rabbitmqctl set_user_tags name administrator；rabbitmqctl set_permissions -p / name ".*" ".*" ".*"。
 
 ### 6. 分布式组件对象模型(DCOM):
 #### &emsp;&emsp;简介：
