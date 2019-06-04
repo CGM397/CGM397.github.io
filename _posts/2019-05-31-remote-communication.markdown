@@ -26,8 +26,8 @@ tag: [Travel, Blogging, Mountains]
 #### &emsp;&emsp;注意事项：可以在IDEA或者Eclipse中创建WebService服务器端和客户端，创建客户端之后可以从服务器提供的端口下载服务，如果下载失败(限制访问某文件)的话，可以在/path/jdk1.8/jre/lib/下面创建一个jaxp.properties文件(如果不存在的话)，然后写入这一行：javax.xml.accessexternalschema = all；也可以在命令行中输入如下命令来下载服务器端的服务：wsimport -s . http://localhost:8080/WebServiceTest?wsdl，其中的'-s'代表下载.java文件和.class文件，'.'指的是下载路径，为当前路径，最后的为服务器端提供的端口。
 
 ### 5. 消息队列(MQ):
-#### &emsp;&emsp;简介：“消息队列”是在消息的传输过程中保存消息的容器。消息队列的主要特点是异步处理，主要目的是减少请求响应时间和解耦。可以用来进行远程方法调用。
-#### &emsp;&emsp;使用：详见github项目。
+#### &emsp;&emsp;简介：“消息队列”是在消息的传输过程中保存消息的容器。消息队列的主要特点是异步处理，主要目的是减少请求响应时间和解耦。可以用来进行远程方法调用。主流的MQ有ActiveMQ、RabbitMQ、RocketMQ和Kafka等。
+#### &emsp;&emsp;使用：我使用的是RabbitMQ，使用之前需要安装Erlang和RabbitMQ Server，Windows安装教程可参考这篇[博客](https://www.cnblogs.com/ericli-ericli/p/5902270.html)，实例代码详见github项目。
 #### &emsp;&emsp;注意事项：TODO。
 
 ### 6. 分布式组件对象模型(DCOM):
