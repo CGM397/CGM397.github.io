@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>MIDI文件学习笔记 - CGM's Blog</title>
+	<meta name="description" content="You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes.">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta property="og:image" content="">
+	<link rel="shortcut icon" href="/CGM397.github.io/assets/img/favicon/favicon.ico" type="image/x-icon">
+	<link rel="apple-touch-icon" href="/CGM397.github.io/assets/img/favicon/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="/CGM397.github.io/assets/img/favicon/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="/CGM397.github.io/assets/img/favicon/apple-touch-icon-114x114.png">
+	<!-- Chrome, Firefox OS and Opera -->
+	<meta name="theme-color" content="#d25469">
+	<!-- Windows Phone -->
+	<meta name="msapplication-navbutton-color" content="#d25469">
+	<!-- iOS Safari -->
+	<meta name="apple-mobile-web-app-status-bar-style" content="#d25469">
+	<!-- Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
+	<link rel="stylesheet" href="/CGM397.github.io/assets/fonts/font-awesome/css/font-awesome.min.css">
+	<!-- Styles -->
+	<link rel="stylesheet" href="/CGM397.github.io/assets/css/main.css">
+</head>
+
+<body>
+
+  
+<header class="main_header">
+  <a href="/CGM397.github.io/" class="logo">CGM's Blog</a>
+  <nav class="main_menu">
+    <a href="/CGM397.github.io/about/">About</a>
+    <a href="/CGM397.github.io/contact/">Contact</a>
+  </nav>
+</header> <!-- End Section Header -->
+
+<main class="post_content">
+  <article class="post">
+    <header>
+      <div class="post_image">
+        <img src=/CGM397.github.io/assets/img/indonesia.jpg alt="MIDI文件学习笔记">
+      </div>
+      <div class="post_description">
+        <p class="post_meta">2018, Oct 06</p>
+        <h1 class="post_title">MIDI文件学习笔记</h1>
+      </div>
+    </header> <!-- End Header -->
+
+    <div class="entry_content">
+      <h3 id="1-midimusical-instrument-digital-interface概述">1. MIDI(Musical Instrument Digital Interface)概述</h3>
+<h4 id="11-midi是编曲界最广泛的音乐标准格式可称为计算机能理解的乐谱来自百度百科midi">  1.1. MIDI是编曲界最广泛的音乐标准格式，可称为“计算机能理解的乐谱”。(来自百度百科——<a href="https://baike.baidu.com/item/MIDI/217824?fr=aladdin">MIDI</a>)</h4>
+
+<h3 id="2-midi文件格式">2. MIDI文件格式</h3>
+<h4 id="21-一个midi文件格式是由一个头块和若干个轨道块组成的">  2.1. 一个MIDI文件格式是由一个头块和若干个轨道块组成的。</h4>
+<h4 id="22-头块的格式是4d-54-68-64-00-00-00-06-ff-ff-nn-nn-dd-dd其中4d-54-68-64是头块标记后面紧接的4位表示头块的大小现行的格式中头块固定为6个字节大小ff-ff指的是文件的格式nn-nn是midi文件中的轨道数dd-dd是每个4分音符tick数">  2.2. 头块的格式是“4D 54 68 64 00 00 00 06 ff ff nn nn dd dd”，其中“4D 54 68 64”是头块标记，后面紧接的4位表示头块的大小，现行的格式中头块固定为6个字节大小。“ff ff”指的是文件的格式，“nn nn”是MIDI文件中的轨道数，“dd dd”是每个4分音符tick数。</h4>
+<h4 id="23-每个轨道块的格式是由轨道头和若干事件组成的轨道头的格式是4d-54-72-6b-xx-xx-xx-xx其中4d-54-72-6b是轨道块标记后面紧接的4位表示该轨道块的大小不包括轨道头">  2.3. 每个轨道块的格式是由轨道头和若干事件组成的，轨道头的格式是“4D 54 72 6B xx xx xx xx”，其中“4D 54 72 6B”是轨道块标记，后面紧接的4位表示该轨道块的大小(不包括轨道头)。</h4>
+<h4 id="24-轨道块中有若干midi事件非midi事件和系统码事件其中非midi事件也叫meta事件">  2.4. 轨道块中有若干MIDI事件、非MIDI事件和系统码事件，其中非MIDI事件也叫meta事件。</h4>
+<h4 id="25-每个事件之前都会有一个delta-time这个delta-time不同于头块里的delta-time这里表示紧随其后的事件距离上一个事件的时间间隔注意如果是多轨同步所有轨道块都是同时开始的所以每个轨道块的第一个事件前面的delta-time都是距离开始的时间间隔">  2.5. 每个事件之前都会有一个delta-time，这个delta-time不同于头块里的delta-time，这里表示紧随其后的事件距离上一个事件的时间间隔，注意，如果是多轨同步，所有轨道块都是同时开始的，所以每个轨道块的第一个事件前面的delta-time都是距离开始的时间间隔。</h4>
+
+<h3 id="3-delta-time以tick为时间单位">3. delta-time(以tick为时间单位)</h3>
+<h4 id="31-delta-time的格式用多个字节表示每个字节最高位是标志位tick--128--1--0其余7位是数值最后一个字节的标志位为0所以读取时只需要逐个字节地读读到最高位是0的字节停止">  3.1. delta-time的格式：用多个字节表示，每个字节最高位是标志位(tick &gt;= 128 ? 1 : 0)，其余7位是数值，最后一个字节的标志位为0，所以读取时只需要逐个字节地读，读到最高位是0的字节停止。</h4>
+<h4 id="32-delta-time的16进制转10进制首先将每个字节最高位设为0将每个字节分别转成10进制再分别乘以128的n次方n--delta-time字节长度---1---ii为第i个字节从0开始">  3.2. delta-time的16进制转10进制：首先将每个字节最高位设为0，将每个字节分别转成10进制，再分别乘以128的n次方(n = delta-time字节长度 - 1 - i，i为第i个字节，从0开始)。</h4>
+<h4 id="33-将delta-time转成绝对时间秒毫秒微秒等找到命令码为51的meta事件紧随其后的3个字节表示1个4分音符的微秒数头块中的delta-time表示1个4分音符的tick数两者相除可以得到1个tick的微秒数再将转成10进制的delta-time数值乘以1个tick的微秒数即可得到每个delta-time的微秒数">  3.3. 将delta-time转成绝对时间(秒、毫秒、微秒等)：找到命令码为“51”的meta事件，紧随其后的3个字节表示1个4分音符的微秒数，头块中的delta-time表示1个4分音符的tick数，两者相除可以得到1个tick的微秒数，再将转成10进制的delta-time数值乘以1个tick的微秒数，即可得到每个delta-time的微秒数。</h4>
+
+<h3 id="4-midi事件">4. MIDI事件</h3>
+<h4 id="41-midi事件格式通常以一个字节大于128的命令码开始如果delta-time结束之后的那个字节小于128则是缺省命令码的midi事件只有数据沿用上个midi事件的命令码命令码最常用的是8x松开音符9x按下音符命令码之后是对应的参数数据8x9x的参数都是两个字节音符速度力度参数数据之后就是下一个事件的delta-time">  4.1. MIDI事件格式：通常以一个字节(大于128)的命令码开始，如果delta-time结束之后的那个字节小于128，则是缺省命令码的MIDI事件(只有数据)，沿用上个MIDI事件的命令码。命令码最常用的是8x(松开音符)、9x(按下音符)。命令码之后是对应的参数数据，8x、9x的参数都是两个字节：音符、速度(力度)。参数数据之后就是下一个事件的delta-time。</h4>
+<h4 id="42-获取音符事件就是从midi事件中获取">  4.2. 获取音符事件就是从MIDI事件中获取。</h4>
+
+<h3 id="5-meta事件">5. meta事件</h3>
+<h4 id="51-meta事件格式固定开头ff紧接着就是命令码常见的有513个字节数据1个4分音符的微秒数584个字节数据节拍分子节拍分母节拍器时钟1个4分音符包括的32分音符的个数592个字节数据升降号数-7-1降号0c17升号大小调0大调1小调再接着是数据长度最后是数据">  5.1. meta事件格式：固定开头：“ff”，紧接着就是命令码，常见的有“51”：3个字节数据，1个4分音符的微秒数；“58”：4个字节数据，节拍分子、节拍分母、节拍器时钟、1个4分音符包括的32分音符的个数；“59”：2个字节数据，升降号数(-7~-1：降号；0：c；1~7：升号)、大小调(0：大调；1：小调)，再接着是数据长度，最后是数据。</h4>
+<h4 id="52-meta事件部分解析时可能会有错但是如果meta事件都在一个轨道块中的话对音符获取影响不大只需要获取到必要的数据即可比如51命令的参数数据">  5.2. meta事件部分解析时可能会有错，但是如果meta事件都在一个轨道块中的话，对音符获取影响不大(只需要获取到必要的数据即可，比如“51”命令的参数数据)。</h4>
+
+<h3 id="6-系统码事件">6. 系统码事件</h3>
+<h4 id="61-系统码事件格式固定开头f0以f7结尾">  6.1. 系统码事件格式：固定开头：“f0”，以“f7”结尾。</h4>
+<h4 id="62-因为系统码事件在midi事件中不常见所以没有深究">  6.2. 因为系统码事件在MIDI事件中不常见，所以没有深究。</h4>
+
+<h3 id="7-音符">7. 音符</h3>
+<h4 id="71-通过音符的16进制数求音符的符号音名加音阶假设音符是nin是音名i是音阶公式n--b-mod-12i--b-div-12---1其中b表示音符字节的10进制数">  7.1. 通过音符的16进制数求音符的符号(音名加音阶)：假设音符是Ni，N是音名，i是音阶。公式：N = B mod 12；i = B div 12 - 1，其中B表示音符字节的10进制数。</h4>
+<h4 id="72-n的10进制数值参照下表">  7.2. N的10进制数值参照下表：</h4>
+<table cellspacing="35">
+    <tr>
+        <td>音名</td>
+        <td>C</td>
+        <td>#C</td>
+        <td>D</td>
+        <td>#D</td>
+        <td>E</td>
+        <td>F</td>
+        <td>#F</td>
+        <td>G</td>
+        <td>#G</td>
+        <td>A</td>
+        <td>#A</td>
+        <td>B</td>
+    </tr>
+    <tr>
+        <td>10进制数值</td>
+        <td>0</td>
+        <td>1</td>
+        <td>2</td>
+        <td>3</td>
+        <td>4</td>
+        <td>5</td>
+        <td>6</td>
+        <td>7</td>
+        <td>8</td>
+        <td>9</td>
+        <td>10</td>
+        <td>11</td>
+    </tr>
+</table>
+
+<h3 id="8-java读取midi文件">8. Java读取MIDI文件</h3>
+<h4 id="81-用fileinputstream以字节位单位来读取将读取到的字节存到数组中之后处理数组即可">  8.1. 用FileInputStream，以字节位单位来读取。将读取到的字节存到数组中，之后处理数组即可。</h4>
+
+<h3 id="9-mp3转midi文件">9. MP3转MIDI文件</h3>
+<h4 id="91-可以用现有的软件来处理比如cakewalkwidi等等">  9.1. 可以用现有的软件来处理，比如cakewalk，widi等等。</h4>
+<h4 id="92-也可以到某些音乐网站上下载midi音乐比如midishow">  9.2. 也可以到某些音乐网站上下载MIDI音乐，比如<a href="http://www.midishow.com/">MidiShow</a>。</h4>
+
+<h3 id="10-主要参考文献">10. 主要参考文献</h3>
+<h4 id="101-midi歌曲解析">  10.1. <a href="https://blog.csdn.net/shao941122/article/details/46124865">MIDI歌曲解析</a></h4>
+<h4 id="102-标准midi格式">  10.2. <a href="https://blog.csdn.net/absurd/article/details/1321427">标准MIDI格式</a></h4>
+
+    </div>
+    
+    <div class="post_wrapper">
+      <footer class="post_footer cf">
+        <div class="post_share">
+          <span>Share:</span>
+          <a href="https://twitter.com/intent/tweet?text=MIDI文件学习笔记&url=http://localhost:4000/MIDI-learning-notes/" title="Share on Twitter" rel="nofollow" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+          <a href="https://facebook.com/sharer.php?u=http://localhost:4000/MIDI-learning-notes/" title="Share on Facebook" rel="nofollow" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+          <a href="https://plus.google.com/share?url=http://localhost:4000/MIDI-learning-notes/" title="Share on Google+" rel="nofollow" target="_blank"><i class="fa fa-google" aria-hidden="true"></i></a>
+        </div>
+        <div class="post_tag">
+          <span>Tags:</span>
+          
+          <a href="/CGM397.github.io/tags#Travel" class="tag">Travel</a>
+          
+          <a href="/CGM397.github.io/tags#Indonesia" class="tag">Indonesia</a>
+          
+          <a href="/CGM397.github.io/tags#Mountains" class="tag">Mountains</a>
+          
+        </div>
+      </footer>
+    </div>
+  </article> <!-- End Section Post -->
+
+  <section class="author cf">
+    <div class="post_wrapper">
+      <div class="author_image">
+        <img src="/CGM397.github.io/assets/img/author-pic.jpg" alt="Author face">
+      </div>
+      <div class="author_info">
+        <h2 class="author_title">Bright Chan</h2>
+        <p class="author_subtitle">NJUer</p>
+        <div class="author_social">
+          
+          <span class="author_email"><i class="fa fa-envelope-o" aria-hidden="true"></i> <a href="mailto:jstzcgm@gmail.com">jstzcgm@gmail.com</a></span>
+          
+          
+          
+          <span class="author_phone"><i class="fa fa-phone" aria-hidden="true"></i> <a href="tel:18805199056">18805199056</a></span>
+          
+
+          
+          <span class="author_website"><i class="fa fa-link" aria-hidden="true"></i> <a href="TODO" target="_blank">TODO</a></span>
+          
+        </div>
+      </div>
+    </div>
+  </section> <!-- End Section Author -->
+
+  <section class="recent_box">
+    <div class="post_wrapper">
+      <h2 class="recent_title">Recent post</h2>
+      <div class="recent_list">
+        
+          
+            <a href="/leetcode-problem-letterCombinations/" class="recent_item" style="background-image: url( /CGM397.github.io/assets/img/himalayan.jpg )"><span>LeetCode题解----电话号码的字母组合</span></a>
+          
+        
+          
+            <a href="/leetcode-problem-threeSum/" class="recent_item" style="background-image: url( /CGM397.github.io/assets/img/himalayan.jpg )"><span>LeetCode题解----三数之和</span></a>
+          
+        
+          
+            <a href="/MIDI-learning-notes/" class="recent_item" style="background-image: url( /CGM397.github.io/assets/img/indonesia.jpg )"><span>MIDI文件学习笔记</span></a>
+          
+        
+          
+            <a href="/blog-learning-notes/" class="recent_item" style="background-image: url( /CGM397.github.io/assets/img/indonesia.jpg )"><span>博客学习开发笔记</span></a>
+          
+        
+          
+            <a href="/leetcode-problem-atoi/" class="recent_item" style="background-image: url( /CGM397.github.io/assets/img/himalayan.jpg )"><span>LeetCode题解----atoi</span></a>
+          
+        
+          
+            <a href="/leetcode-problem-reverseInteger/" class="recent_item" style="background-image: url( /CGM397.github.io/assets/img/himalayan.jpg )"><span>LeetCode题解----反转整数</span></a>
+          
+        
+      </div>
+    </div>
+  </section> <!-- End Section Recent Box -->
+  
+  
+<section class="comment_area">
+  <div class="comment_wrapper">
+    
+    <div id="disqus_thread" class="article-comments"></div>
+    <script>
+      (function() {
+          var d = document, s = d.createElement('script');
+          s.src = '//mr-brown.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    
+  </div>
+</section> <!-- End Section Comment Area -->
+  
+</main> <!-- End Section Post Content -->
+
+
+<footer class="main_footer">
+  <div class="wrapper">
+    
+<ul class="social_footer">
+  
+  <li><a href="https://github.com/CGM397" target="_blank"><i class="fa fa-github" aria-hidden="true"></i></a></li>
+  
+  
+  <li><a href="#" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+  
+  
+  <li><a href="#" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+  
+  
+  <li><a href="#" target="_blank"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
+  
+  
+  <li><a href="#" target="_blank"><i class="fa fa-dribbble" aria-hidden="true"></i></a></li>
+  
+  
+  <li><a href="#" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+  
+</ul>
+    <!-- <div class="copyright">
+      <p>&copy; 2018 All rights reserved. Design by <a href="https://artemsheludko.github.io" target="_blank">Artem Sheludko</a></p>
+    </div> -->
+  </div>
+</footer> <!-- End Section Footer -->
+
+  
+<div class="top" title="Top"><i class="fa fa-chevron-up" aria-hidden="true"></i></div> <!-- End Top Scroll -->
+  
+<script src="/CGM397.github.io/assets/js/jquery-3.2.1.min.js"></script>
+<script src="/CGM397.github.io/assets/js/jquery.vide.min.js"></script>
+<script src="/CGM397.github.io/assets/js/custom.js"></script>
+<!-- End Javascript -->
+
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', '', 'auto');
+  ga('send', 'pageview');
+</script> <!-- End Analytics -->
+</body>
+</html>
