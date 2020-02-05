@@ -6,7 +6,7 @@ date: 2020-02-05 12:45:00
 tag: [Travel, Blogging, Mountains]
 ---
 ### 一. 问题:
-#### &emsp;&emsp;1. 在TensorFlow2.0中，连续调用tf.keras.backend.random_normal方法(固定seed)得到的随机值不一样。状态：待解决。
+#### &emsp;&emsp;1. 在TensorFlow2.0中，连续调用tf.keras.backend.random_normal方法(固定seed)得到的随机值不一样。原因：从打印的值来看，下一个打印的值是接着上一个打印的值之后的随机值，具体原因没有深究。状态：待解决。
 
 ### 二. 注意点:
 #### &emsp;&emsp;1. 在TensorFlow2.0中，损失函数应该写在一个**没有参数的函数**中供优化器的minimize函数调用，需要特别注意的是，这个函数必须包含待调整的所有参数，即在此函数中需要出现所有待调整的参数。
