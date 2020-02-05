@@ -12,6 +12,7 @@ tag: [Travel, Blogging, Mountains]
 #### &emsp;&emsp;1. 在TensorFlow2.0中，损失函数应该写在一个**没有参数的函数**中供优化器的minimize函数调用，需要特别注意的是，这个函数必须包含待调整的所有参数，即在此函数中需要出现所有待调整的参数。
 #### &emsp;&emsp;2. 在TensorFlow2.0中，优化器SGD即之前的梯度下降优化器。
 #### &emsp;&emsp;3. 在TensorFlow2.0中，打印一个Variable的值，可以使用.value()函数。
+#### &emsp;&emsp;4. 在TensorFlow2.0中，@tf.function注释在函数前面可以使函数编译进计算图，从而更快地进行计算。
 
 ### 三. 参考资料:
 #### &emsp;&emsp;1. [TensorFlow官网API](https://tensorflow.google.cn/api_docs/python/tf?hl=en)
